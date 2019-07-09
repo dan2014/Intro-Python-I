@@ -6,12 +6,22 @@
 
 # YOUR CODE HERE
 
+
+def f1(arg1,arg2):
+    return arg1 + arg2
+
 print(f1(1, 2))
 
 # Write a function f2 that takes any number of integer arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
+def f2(*argv):
+    if type(argv[0]) is list:
+        return sum(argv[0])
+
+    return sum(argv)
+
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -28,6 +38,10 @@ print(f2(a))    # Should print 22
 # arguments. Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
+def f3(a,b=None):
+    if b is None:
+        return a + 1
+    return sum([a,b])
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -42,16 +56,23 @@ print(f3(8))     # Should print 9
 # Google "python keyword arguments".
 
 # YOUR CODE HERE
+def f4(*argv,**kwargs):
+    if type(argv) is tuple and len(argv) > 0:
+        for x, y in argv[0].items():
+            print(f"key: {x}, value: {y}")
+    else :
+        for x, y in kwargs.items():
+            print(f"key: {x}, value: {y}")
 
 # Should print
 # key: a, value: 12
 # key: b, value: 30
 f4(a=12, b=30)
 
-# Should print
-# key: city, value: Berkeley
-# key: population, value: 121240
-# key: founded, value: "March 23, 1868"
+# # Should print
+# # key: city, value: Berkeley
+# # key: population, value: 121240
+# # key: founded, value: "March 23, 1868"
 f4(city="Berkeley", population=121240, founded="March 23, 1868")
 
 d = {

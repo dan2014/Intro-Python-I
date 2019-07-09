@@ -21,4 +21,30 @@ and does the following:
 
 import sys
 import calendar
+import argparse
 from datetime import datetime
+
+cal = calendar.TextCalendar()
+current_time = datetime.now()
+
+parser = argparse.ArgumentParser(description='Render a calendar in the terminal')
+parser.add_argument('--month', type=int,
+                    help='an integer that represents the months, 1-12 inclusive')
+parser.add_argument('--year', type=int,
+                    help='an integer that represents the year')
+
+args = parser.parse_args()
+
+print(args.year )
+
+def main():
+  if args.year==None and args.month==None:
+    return cal.prmonth(current_time.year,current_time.month)
+  elif args.year==None and args.month!=None and 1 <= args.month <= 12:
+    return cal.prmonth(current_time.year,args.month)
+  elif args.year!=None and args.month!=None and 1 <= args.month <= 12:
+    return cal.prmonth(args.year,args.month)
+  else :
+    parser.print_help()
+
+main()
